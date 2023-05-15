@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'com.alenashs'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def restAssuredVersion = "5.3.0",
+    slf4jVersion = "2.0.7"
+
+dependencies {
+    testImplementation (
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "io.rest-assured:json-schema-validator:$restAssuredVersion",
+            "org.junit.jupiter:junit-jupiter:5.9.2",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            'org.projectlombok:lombok:1.18.22'
+    )
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
