@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "io.freefair.lombok" version "6.0.0-m2"
 }
 
 group 'com.alenashs'
@@ -18,6 +19,7 @@ dependencies {
             "io.rest-assured:json-schema-validator:$restAssuredVersion",
             "org.junit.jupiter:junit-jupiter:5.9.2",
             "org.slf4j:slf4j-simple:$slf4jVersion",
+            "org.assertj:assertj-core:3.24.2",
             'org.projectlombok:lombok:1.18.22'
     )
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'

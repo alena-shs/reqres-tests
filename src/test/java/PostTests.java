@@ -2,6 +2,7 @@ import models.*;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PostTests {
@@ -19,8 +20,8 @@ public class PostTests {
                 .then()
                 .spec(Specs.responseCreateUser)
                 .extract().as(ResponseUserInfo.class);
-        assertEquals(response.getName(), body.getName());
-        assertEquals(response.getJob(), body.getJob());
+        assertThat(response.getName()).isEqualTo(body.getName());
+        assertThat(response.getJob()).isEqualTo(body.getJob());
     }
 
     @Test
@@ -41,8 +42,8 @@ public class PostTests {
                 .then()
                 .spec(Specs.responseSpec)
                 .extract().as(ResponseSuccessfulRegistration.class);
-        assertEquals(response.getId(), expectedId);
-        assertEquals(response.getToken(), expectedToken);
+        assertThat(response.getId()).isEqualTo(expectedId);
+        assertThat(response.getToken()).isEqualTo(expectedToken);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class PostTests {
                 .then()
                 .spec(Specs.responseError)
                 .extract().as(ResponseBadRequest.class);
-        assertEquals(response.getError(), expectedResponse);
+        assertThat(response.getError()).isEqualTo(expectedResponse);
     }
 
     @Test
@@ -77,7 +78,7 @@ public class PostTests {
                 .then()
                 .spec(Specs.responseSpec)
                 .extract().as(ResponseSuccessfuLogin.class);
-        assertEquals("QpwL5tke4Pnpja7X4", response.getToken());
+        assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4");
     }
 
     @Test
@@ -94,6 +95,7 @@ public class PostTests {
                 .then()
                 .spec(Specs.responseError)
                 .extract().as(ResponseBadRequest.class);
+        assertThat(response.getError()).isEqualTo(expectedResponse);
         assertEquals(expectedResponse, response.getError());
     }
 }
