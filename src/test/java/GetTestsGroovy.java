@@ -8,12 +8,8 @@ import static org.hamcrest.Matchers.*;
 public class GetTestsGroovy {
     @Test
     void successfulCreateTest() {
-        CreateBody body = new CreateBody();
-        body.setName("morpheus");
-        body.setJob("master");
         given()
                 .spec(Specs.request)
-                .body(body)
                 .when()
                 .get("/unknown")
                 .then()
