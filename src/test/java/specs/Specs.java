@@ -1,3 +1,5 @@
+package specs;
+
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
@@ -8,13 +10,14 @@ import static io.restassured.filter.log.LogDetail.STATUS;
 import static io.restassured.RestAssured.with;
 
 public class Specs {
-    public static RequestSpecification request = with()
+    public static RequestSpecification requestSpec = with()
             .baseUri("https://reqres.in")
             .basePath("/api")
             .log().uri()
+            .log().body()
             .contentType(ContentType.JSON);
 
-    public static ResponseSpecification responseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification successResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
             .expectStatusCode(200)
